@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="bg-secondary">
     <div class="row">
       <div class="col-4" :key="personaje.id" v-for="personaje in personajes">
-        <div class="card mt-4" style="width: 18rem">
+        <div class="card mt-4 text-center" style="width: 18rem, height: 8rem">
           <img :src="personaje.image" />
           <div class="card-body">
             <h5 class="card-title">{{ personaje.name }}</h5>
@@ -53,7 +53,7 @@
 import axios from "axios";
 
 export default {
-  name: "HelloWorld",
+  name: "Personajes",
   data() {
     return {
       personajes: [],

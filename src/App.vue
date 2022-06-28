@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import Personajes from './components/Personajes.vue';
 import Navbar from "./components/Navbar.vue";
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
@@ -16,7 +16,7 @@ export default {
   name: "App",
   components: {
     Navbar,
-    HelloWorld,
+    Personajes,
     Login,
     Register,
     Users
@@ -31,6 +31,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

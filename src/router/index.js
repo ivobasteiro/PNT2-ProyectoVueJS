@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import HelloWorld from '../components/HelloWorld.vue';
+import Personajes from '../components/Personajes.vue';
 import About from '../components/About';
 import Unauth from '../components/Unauth';
 import Login from '../components/Login';
@@ -18,10 +18,15 @@ const logged = () => {
 
 const routes = [
     {
-        path: '/',
-        name: 'HelloWorld',
-        component: HelloWorld,
+        path: '/personajes',
+        name: 'Personajes',
+        component: Personajes,
         beforeEnter: [logged]
+    },
+    {
+        path: '/',
+        name: 'Home',
+        component: Register
     },
     {
         path: '/about/:id',
@@ -29,14 +34,14 @@ const routes = [
         component: About
     },
     {
-        path: '/login',
-        name: 'Login',
-        component: Login
-    },
-    {
         path: '/register',
         name: 'Register',
         component: Register
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
     },
     {
         path: '/users',
