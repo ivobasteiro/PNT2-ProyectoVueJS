@@ -1,45 +1,45 @@
 <template>
-  <div class="row justify-content-center bg-secondary">
+  <div class="input-group justify-content-center my-3">
+    <div class="form-outline">
+      <input
+        v-model="search"
+        type="text"
+        placeholder="Search"
+        id="form1"
+        class="form-control"
+      />
+    </div>
+    <button type="button" class="btn btn-dark" v-on:click="searchByName()">
+      <i class="bi bi-search"></i>
+    </button>
+  </div>
+
+  <div class="row bg-secondary">
     <div class="col-3" :key="personaje.id" v-for="personaje in personajes">
       <Personaje :personaje="personaje" />
     </div>
   </div>
 
-  <nav aria-label="Page navigation example">
-    <ul class="pagination mt-3" id="paginator">
-      <li class="page-item">
-        <a class="page-link" href="#" @click.prevent="changePage(page - 1)">
-          Previous
-        </a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="#" @click.prevent="changePage(page + 1)">
-          Next
-        </a>
-      </li>
-    </ul>
-  </nav>
-
-  <button @click="limpiar()">Limpiar</button>
-
-  <div>
-    <input v-model="search" type="text" />
-    <button type="button" class="btn btn-dark" v-on:click="searchByName()">
-      Buscar Nombre
-    </button>
-  </div>
-
-  <div class="mt-2">
-    <input v-model="id" type="text" />
-    <button type="button" class="btn btn-dark" v-on:click="searchById()">
-      Buscar Id
-    </button>
+  <div class="justify-content-center">
+      <ul class="pagination mt-3 justify-content-center" id="paginator">
+        <li class="page-item">
+          <a class="page-link" href="#" @click.prevent="changePage(page - 1)">
+            Previous
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#" @click.prevent="changePage(page + 1)">
+            Next
+          </a>
+        </li>
+      </ul>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import Personaje from "./Personaje.vue";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default {
   name: "Personajes",
@@ -76,17 +76,7 @@ export default {
       this.personajes = results;
       this.pages = response.data.pages;
     },
-    limpiar() {
-      this.personajes = [];
-    },
     searchByName() {
-      this.page = 1;
-      this.loadCharacters();
-    },
-    searchById() {
-      if (this.id <= 0) {
-        alert("EL ID TIENE QUE SER MAYOR A 0!");
-      }
       this.page = 1;
       this.loadCharacters();
     },
