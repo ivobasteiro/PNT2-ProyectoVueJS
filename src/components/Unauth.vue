@@ -2,6 +2,7 @@
   <div>
     <div class="alert alert-danger" role="alert">
       <strong>Unauthorized</strong>
+      <p class="mb-auto">Please log in first</p>
     </div>
     <Login />
   </div>

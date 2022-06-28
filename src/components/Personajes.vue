@@ -1,56 +1,45 @@
 <template>
-  <div class="bg-secondary">
-    <div class="row">
-      <div class="col-4" :key="personaje.id" v-for="personaje in personajes">
-        <div class="card mt-4 text-center" style="width: 18rem, height: 8rem">
-          <img :src="personaje.image" />
-          <div class="card-body">
-            <h5 class="card-title">{{ personaje.name }}</h5>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Estado: {{ personaje.status }}</li>
-            <li class="list-group-item">Origen: {{ personaje.origin.name }}</li>
-            <li class="list-group-item">Especie: {{ personaje.species }}</li>
-          </ul>
-        </div>
-      </div>
+  <div class="row justify-content-center bg-secondary">
+    <div class="col-3" :key="personaje.id" v-for="personaje in personajes">
+      <Personaje :personaje="personaje" />
     </div>
+  </div>
 
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center mt-3" id="paginator">
-        <li class="page-item">
-          <a class="page-link" href="#" @click.prevent="changePage(page - 1)"
-            >Previous</a
-          >
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#" @click.prevent="changePage(page + 1)"
-            >Next</a
-          >
-        </li>
-      </ul>
-    </nav>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination mt-3" id="paginator">
+      <li class="page-item">
+        <a class="page-link" href="#" @click.prevent="changePage(page - 1)">
+          Previous
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#" @click.prevent="changePage(page + 1)">
+          Next
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-    <button @click="limpiar()">Limpiar</button>
+  <button @click="limpiar()">Limpiar</button>
 
-    <div>
-      <input v-model="search" type="text" />
-      <button type="button" class="btn btn-dark" v-on:click="searchByName()">
-        Buscar Nombre
-      </button>
-    </div>
+  <div>
+    <input v-model="search" type="text" />
+    <button type="button" class="btn btn-dark" v-on:click="searchByName()">
+      Buscar Nombre
+    </button>
+  </div>
 
-    <div class="mt-2">
-      <input v-model="id" type="text" />
-      <button type="button" class="btn btn-dark" v-on:click="searchById()">
-        Buscar Id
-      </button>
-    </div>
+  <div class="mt-2">
+    <input v-model="id" type="text" />
+    <button type="button" class="btn btn-dark" v-on:click="searchById()">
+      Buscar Id
+    </button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Personaje from "./Personaje.vue";
 
 export default {
   name: "Personajes",
@@ -66,6 +55,9 @@ export default {
   },
   props: {
     msg: String,
+  },
+  components: {
+    Personaje,
   },
   methods: {
     async loadCharacters() {

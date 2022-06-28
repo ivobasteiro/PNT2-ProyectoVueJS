@@ -1,58 +1,61 @@
 <template>
   <div>
-    <section class="data">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">Username</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr :key="user.id" v-for="(user, index) in users">
-            <td>{{ user.id }}</td>
-            <td>
-              <span v-if="formActualizar && idActualizar == user.id">
-                <!-- Formulario para actualizar -->
-                <input
-                  v-model="usernameActualizar"
-                  type="text"
-                  class="form-control"
-                />
-              </span>
-              <span v-else>
-                <!-- Dato username -->
-                {{ user.username }}
-              </span>
-            </td>
-            <td>
-              <!-- Botón para guardar la información actualizada -->
-              <span v-if="formActualizar && idActualizar == user.id">
-                <button
-                  @click="guardarActualizacion(user.id, index)"
-                  class="btn btn-success"
-                >
-                  Guardar
-                </button>
-              </span>
-              <span v-else>
-                <!-- Botón para mostrar el formulario de actualizar -->
-                <button
-                  @click="verFormActualizar(user.id, index)"
-                  class="btn btn-warning"
-                >
-                  Actualizar
-                </button>
-                <!-- Botón para borrar -->
-                <button @click="borrarUsuario(user.id)" class="btn btn-danger">
-                  Borrar
-                </button>
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    <div>
+      <h1 class="mt-3">Admin Board</h1>
+    </div>
+    <div class="container">
+      <section class="data">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Username</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr :key="user.id" v-for="(user, index) in users">
+              <td>{{ user.id }}</td>
+              <td>
+                <span v-if="formActualizar && idActualizar == user.id">
+                  <input
+                    v-model="usernameActualizar"
+                    type="text"
+                    class="form-control"
+                  />
+                </span>
+                <span v-else>
+                  {{ user.username }}
+                </span>
+              </td>
+              <td>
+                <span v-if="formActualizar && idActualizar == user.id">
+                  <button
+                    @click="guardarActualizacion(user.id, index)"
+                    class="btn btn-success"
+                  >
+                    Guardar
+                  </button>
+                </span>
+                <span v-else>
+                  <button
+                    @click="verFormActualizar(user.id, index)"
+                    class="btn btn-warning"
+                  >
+                    Actualizar
+                  </button>
+                  <button
+                    @click="borrarUsuario(user.id)"
+                    class="btn btn-danger"
+                  >
+                    Borrar
+                  </button>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -89,7 +92,10 @@ export default {
       this.formActualizar = false;
       const updatedUser = this.usernameActualizar;
       this.users[index].username = this.usernameActualizar;
-      await axios.put(`https://62b241bcc7e53744afca0e5c.mockapi.io/users/${userId}`, {username: updatedUser});
+      await axios.put(
+        `https://62b241bcc7e53744afca0e5c.mockapi.io/users/${userId}`,
+        { username: updatedUser }
+      );
     },
     async actualizarUsuarios() {
       const response = await axios.get(
