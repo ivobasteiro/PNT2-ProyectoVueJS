@@ -8,6 +8,9 @@
             <router-link class="nav-link" to="/personajes">Personajes</router-link>
           </li>
           <li class="nav-item">
+            <router-link class="nav-link" to="/Champions">Champions</router-link>
+          </li>
+          <li class="nav-item">
             <router-link class="nav-link" to="/users">Users</router-link>
           </li>
         </ul>

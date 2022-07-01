@@ -5,6 +5,8 @@ import Unauth from '../components/Unauth';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import Users from '../components/Users';
+import Champions from '../components/Champions';
+import AddChampion from '../components/AddChampion';
 
 const logged = () => {
     const isLogged = localStorage.getItem("logged");
@@ -16,12 +18,6 @@ const logged = () => {
 }
 
 const routes = [
-    {
-        path: '/personajes',
-        name: 'Personajes',
-        component: Personajes,
-        beforeEnter: [logged]
-    },
     {
         path: '/',
         name: 'Home',
@@ -38,6 +34,18 @@ const routes = [
         component: Login
     },
     {
+        path: '/personajes',
+        name: 'Personajes',
+        component: Personajes,
+        beforeEnter: [logged]
+    },
+    {
+        path: '/champions',
+        name: 'Champions',
+        component: Champions,
+        beforeEnter: [logged]
+    },
+    {
         path: '/users',
         name: 'Users',
         component: Users,
@@ -47,7 +55,12 @@ const routes = [
         path: '/unauth',
         name: 'Unauth',
         component: Unauth
-    }
+    },
+    {
+        path: '/addchampion',
+        name: 'AddChampion',
+        component: AddChampion
+    },
 ];
 
 const router = createRouter({
