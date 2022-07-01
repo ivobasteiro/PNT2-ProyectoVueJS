@@ -17,7 +17,7 @@
           <p class="card-text"><strong>Rol: </strong></p>
           <input v-model="updateRol" type="text" class="form-control" />
         </span>
-        <span v-else> <strong>Rol: </strong>{{ champion.rol }} </span>
+        <span v-else> <strong>Role: </strong>{{ champion.rol }} </span>
       </div>
 
       <div>
@@ -34,9 +34,27 @@
         <button
           type="button"
           class="btn btn-dark mt-3"
-          v-on:click="showUpdateForm(champion.id, index)"
+          v-on:click="showUpdateForm()"
         >
           <i class="bi bi-pen"></i>
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-success mt-3 mx-2"
+          v-on:click="saveChanges(champion)"
+          v-if="updateForm"
+        >
+          <i class="bi bi-check"></i>
+        </button>
+        
+        <button
+          type="button"
+          class="btn btn-danger mt-3"
+          v-on:click="removeChampion(champion)"
+          v-if="updateForm"
+        >
+          <i class="bi bi-trash"></i>
         </button>
       </div>
     </div>
@@ -44,13 +62,16 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Champion",
   data() {
     return {
       updateForm: false,
       updateName: "",
-      idActualizar: 0,
+      updateRol: "",
+      updateDescription: "",
     };
   },
   props: {
@@ -64,6 +85,28 @@ export default {
         this.updateForm = true;
       }
     },
+    async saveChanges(champion) {
+      this.updateForm = false;
+      const updatedChampion = {
+        name: this.updateName,
+        rol: this.updateRol,
+        description: this.updateDescription,
+      };
+      champion.name = this.updateName;
+      champion.rol = this.updateRol;
+      champion.description = this.updateDescription;
+
+      await axios.put(
+        `https://62b241bcc7e53744afca0e5c.mockapi.io/champions/${champion.id}`,
+        updatedChampion
+      );
+    },
+    async removeChampion(champion) {
+      await axios.delete(
+        `https://62b241bcc7e53744afca0e5c.mockapi.io/champions/${champion.id}`
+      );
+      this.$el.parentNode.removeChild(this.$el)
+    }
   },
 };
 </script>

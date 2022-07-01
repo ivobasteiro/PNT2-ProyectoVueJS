@@ -81,8 +81,6 @@ export default {
       this.formActualizar = true;
     },
     async borrarUsuario(userId) {
-      console.log("user Id :", userId);
-      console.log("Ivo");
       await axios.delete(
         `https://62b241bcc7e53744afca0e5c.mockapi.io/users/${userId}`
       );
