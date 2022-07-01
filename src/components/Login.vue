@@ -80,8 +80,8 @@ export default {
             user.password == this.input.password
           ) {
             localStorage.setItem("logged", 1);
-            alert("logeado");
-            this.$router.push('/Personajes');
+            alert("Succesfully logged in");
+            this.$router.push('/champions');
           } else {
             alert("The username and / or password is incorrect");
           }

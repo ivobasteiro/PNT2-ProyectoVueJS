@@ -1,8 +1,8 @@
 <template>
   <h1 class="mt-3 text-light">Champions</h1>
   
-  <div class="input-group justify-content-center my-3">
-    <h5 class="text-light my-auto mx-3">Add New Champion</h5>
+  <div class="input-group justify-content-center my-3 border">
+    <h5 class="text-light my-auto mx-3">Add a New Champion</h5>
     <button type="button" class="btn btn-success" v-on:click="addChampion()">
       <i class="bi bi-plus"></i>
     </button>

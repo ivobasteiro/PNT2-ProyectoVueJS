@@ -77,7 +77,6 @@ export default {
     verFormActualizar(userId, index) {
       this.idActualizar = userId;
       this.usernameActualizar = this.users[index].username;
-      console.log(this.usernameActualizar);
       this.formActualizar = true;
     },
     async borrarUsuario(userId) {

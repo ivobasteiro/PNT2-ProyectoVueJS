@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import Personajes from './components/Personajes.vue';
 import Navbar from "./components/Navbar.vue";
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
@@ -16,7 +15,6 @@ export default {
   name: "App",
   components: {
     Navbar,
-    Personajes,
     Login,
     Register,
     Users
